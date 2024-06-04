@@ -1,0 +1,45 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    background: linear-gradient( #dfdfdf, #6d6d6d);
+    margin: 0;
+    padding: 0;
+}
+
+.tela {
+    display: none;
+    padding: 20px;
+}
+
+.tela.ativa {
+    display: block;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 10px;
+    font-size: 1em;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 300px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+p {
+    font-size: 1.2em;
+}
