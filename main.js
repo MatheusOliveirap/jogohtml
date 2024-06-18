@@ -4,7 +4,7 @@ const telaResultado = document.getElementById('tela-de-resultado');
 
 const formularioBoasVindas = document.getElementById('formulario-de-boas-vindas');
 const entradaNomeUsuario = document.getElementById('nome-usuario');
-const entradaEmailUsuario = document.getElementById('nome-usuario-email');
+const entradaEmailUsuario = document.getElementById('nome-usuario-email'); // Corrigido para o ID correto
 const mensagemBoasVindas = document.getElementById('mensagem-de-boas-vindas');
 
 const entradaAdivinhacao = document.getElementById('entrada-adivinhacao');
@@ -20,41 +20,34 @@ let numeroCorreto;
 let tentativas;
 let nomeUsuario;
 
-formularioBoasVindas.addEventListener('submit', function(event) {
+formularioBoasVindas.addEventListener('submit', function (event) {
     event.preventDefault();
-
-    // Captura os valores do formulário
-    nomeUsuario = entradaNomeUsuario.value;
-    const emailUsuario = entradaEmailUsuario.value;
-
-    // Validação básica do nome de usuário e email
-    if (nomeUsuario.trim() === '' || emailUsuario.trim() === '') {
-        alert('Por favor, preencha todos os campos.');
-        return;
-    }
-
-    // Envio do formulário para FormSubmit
-    const formData = new FormData();
-    formData.append('nome-usuario', nomeUsuario);
-    formData.append('nome-usuario-email', emailUsuario);
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://formsubmit.co/your-email-here', true);
-    xhr.setRequestHeader('Accept', 'application/json');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                console.log('Formulário enviado com sucesso para o email.');
-                iniciarJogo();
-            } else {
-                console.error('Erro ao enviar formulário:', xhr.status);
-                // Aqui você pode tratar o erro conforme necessário
-            }
-        }
-    };
-    xhr.send(formData);
-});
+    nomeUsuario = entradaNomeUsuario.value.trim(); // Ajustado para o ID correto
+    const email = entradaEmailUsuario.value.trim(); // Ajustado para o ID correto
+    
+    if (nomeUsuario && email) {
+        const formData = new FormData(formularioBoasVindas);
+        formData.append('nome-usuario', nomeUsuario); // Ajustado para o name correto
+        formData.append('nome-usuario-email', email); // Ajustado para o name correto
         
+        fetch(formularioBoasVindas.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao enviar dados');
+            }
+            iniciarJogo();
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao enviar dados. Por favor, tente novamente.');
+        });
+    } else {
+        alert('Por favor, preencha seu nome e email.');
+    }
+});
 
 botaoAdivinhar.addEventListener('click', () => {
     const palpite = parseInt(entradaAdivinhacao.value);
