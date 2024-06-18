@@ -4,6 +4,7 @@ const telaResultado = document.getElementById('tela-de-resultado');
 
 const formularioBoasVindas = document.getElementById('formulario-de-boas-vindas');
 const entradaNomeUsuario = document.getElementById('nome-usuario');
+const entradaEmailUsuario = document.getElementById('nome-usuario-email');
 const mensagemBoasVindas = document.getElementById('mensagem-de-boas-vindas');
 
 const entradaAdivinhacao = document.getElementById('entrada-adivinhacao');
@@ -19,17 +20,41 @@ let numeroCorreto;
 let tentativas;
 let nomeUsuario;
 
-formularioBoasVindas.addEventListener('submit', (event) => {
+formularioBoasVindas.addEventListener('submit', function(event) {
     event.preventDefault();
+
+    // Captura os valores do formulário
     nomeUsuario = entradaNomeUsuario.value;
-    if (nomeUsuario) {
-        iniciarJogo();
+    const emailUsuario = entradaEmailUsuario.value;
+
+    // Validação básica do nome de usuário e email
+    if (nomeUsuario.trim() === '' || emailUsuario.trim() === '') {
+        alert('Por favor, preencha todos os campos.');
+        return;
     }
+
+    // Envio do formulário para FormSubmit
+    const formData = new FormData();
+    formData.append('nome-usuario', nomeUsuario);
+    formData.append('nome-usuario-email', emailUsuario);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://formsubmit.co/your-email-here', true);
+    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                console.log('Formulário enviado com sucesso para o email.');
+                iniciarJogo();
+            } else {
+                console.error('Erro ao enviar formulário:', xhr.status);
+                // Aqui você pode tratar o erro conforme necessário
+            }
+        }
+    };
+    xhr.send(formData);
 });
-
-
-
-
+        
 
 botaoAdivinhar.addEventListener('click', () => {
     const palpite = parseInt(entradaAdivinhacao.value);
