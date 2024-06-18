@@ -42,9 +42,11 @@ input[type="number"] {
 }
 
 button {
+    transition: background-color 0.3s;
     padding: 10px 20px;
     font-size: 1em;
     cursor: pointer;
+
 }
 
 button:disabled {
@@ -66,25 +68,41 @@ p {
 }
 
 .jogo {
+
     font-size: 50px;
     margin: 50px;
-    color: rgb(225, 148, 255);
+    color: rgb(196, 48, 255);
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .jgr {
+    border-radius: 10px;
     margin: 30px;
-    background-color: rgb(221, 146, 255);
+    background-color: rgb(205, 96, 255);
+}
+
+.jgr:hover {
+    background-color: rgb(255, 0, 234);
+    transition: background-color 0.3s;
 }
 
 .adv {
-    background-color: rgb(255, 0, 0);
+     transition: background-color 0.3s;
+    border-radius: 10px;
+    background-color: rgb(255, 68, 224);
 }
+
+.adv:hover {
+
+    background-color: rgb(203, 31, 255);
+}
+
+
 
 .tente {
     font-size: 20px;
     margin: 20px;
-    color: rgb(238, 255, 87);
+    color: rgb(62, 216, 255);
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -96,9 +114,9 @@ p {
 }
 
 .fdk {
-    font-size: 20px;
+    font-size: 25px;
     margin: 10px;
-    color: rgb(238, 255, 87);
+    color: rgb(252, 222, 255);
     font-family: Arial, Helvetica, sans-serif;
 
 }
@@ -126,16 +144,27 @@ p {
 }
 
 .jgnv {
+    transition: background-color 0.2s;
+    border-radius: 10px;
     background-color: rgb(255, 0, 0);
 }
 
+.jgnv:hover{
+    background-color: rgb(255, 110, 110);
+}
+
 .email {
-    
+
     margin: 20px;
     font-size: 20px;
     margin-right: 20px;
     color: rgb(255, 255, 255);
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif
-    
+}
+
+input {
+    border-radius: 10px;
+    padding: 10px;
+    width: 22%;
 }

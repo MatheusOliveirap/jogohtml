@@ -79,7 +79,7 @@ function iniciarJogo() {
 function finalizarJogo() {
     mensagemResultado.textContent = `Parabéns, ${nomeUsuario}! Você acertou o número!`;
     numeroCorretoDisplay.textContent = `O número correto era: ${numeroCorreto}`;
-    mensagemPontuacao.textContent = `Você fez ${tentativas} tentativa(s).`;
+    mensagemPontuacao.textContent = `Você fez ${tentativas} tentativas.`;
     trocarTela(telaResultado);
 }
 
