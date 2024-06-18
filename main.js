@@ -27,6 +27,10 @@ formularioBoasVindas.addEventListener('submit', (event) => {
     }
 });
 
+
+
+
+
 botaoAdivinhar.addEventListener('click', () => {
     const palpite = parseInt(entradaAdivinhacao.value);
     if (isNaN(palpite) || palpite < 1 || palpite > 100) {
